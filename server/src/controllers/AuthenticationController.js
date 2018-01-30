@@ -10,5 +10,37 @@ module.exports = {
                     error: "Táto emailová adresa už bola registrovaná."
                 })
         }
+        },
+
+        async login (req, res) {
+            try {
+                const {email, password} = req.body;
+                const user = await User.findOne({
+                    where: {
+                        email: email
+                    }
+                });
+                if(!user){
+                    return res.status(403).send({
+                        error: "Login nie je platny"
+                    })
+                }
+
+                const isPasswordValid = password === user.password;
+                if(!isPasswordValid){
+                    return res.status(403).send({
+                        error: "Login nie je platny"
+                    })
+                }
+
+                    const userJson = user.toJSON();
+                    res.send ({
+                        user: userJson
+                    })
+                } catch(err){
+                res.status(500).send({
+                    error: "Nastala chyba v prihlásení."
+                })
+            }
     }
 }
