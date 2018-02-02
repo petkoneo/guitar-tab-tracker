@@ -6,6 +6,9 @@
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
+          <form
+          name="guitar-tab-tracker-form"
+          autocomplete ="off">
           <v-text-field
             name="input-1"
             label="Email"
@@ -15,10 +18,12 @@
           <v-text-field
             name="input-1"
             label="Heslo"
+            type="password"
             v-model="password"
+            autocomplete ="new-password"
           >
           </v-text-field>
-
+          </form>
           <div class="error" v-html="error"></div>
           <br>
           <v-btn dark class="cyan"
@@ -46,10 +51,12 @@ export default {
   methods: {
     async register () {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
