@@ -12,8 +12,13 @@
           <v-text-field
             name="input-1"
             label="Heslo"
-            type = "password"
             v-model="password"
+            :append-icon="e3 ? 'visibility' : 'visibility_off'"
+              :append-icon-cb="() => (e3 = !e3)"
+              value="wqfasds"
+              type="password"
+              class="input-group--focused"
+              :type="e3 ? 'password' : 'text'"
           >
           </v-text-field>
 

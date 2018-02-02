@@ -9,14 +9,23 @@
             name="input-1"
             label="Email"
             v-model="email"
+                required
+                :rules="[required]"
           >
           </v-text-field>
           <v-text-field
             name="input-1"
             label="Heslo"
-            type="password"
+            required
+            :rules="[required]"
             v-model="password"
             autocomplete ="new-password"
+            :append-icon="e3 ? 'visibility' : 'visibility_off'"
+              :append-icon-cb="() => (e3 = !e3)"
+              value="wqfasds"
+              type="password"
+              class="input-group--focused"
+              :type="e3 ? 'password' : 'text'"
           >
           </v-text-field>
           </form>
@@ -56,7 +65,7 @@ export default {
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
-      }
+      } 
     }
   },
   components: {

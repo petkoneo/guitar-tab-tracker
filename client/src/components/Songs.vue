@@ -2,6 +2,17 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
         <panel title="Songs">
+
+            <v-btn class="cyan accent-3"
+            slot="action"
+            @click="navigateTo({name: 'songs-create'})"
+            dark
+            absolute
+            right
+            fab>
+            <v-icon>add</v-icon>
+          </v-btn>
+
             <div v-for="song in songs"
             :key="songs.id">
             {{song.title}} -
@@ -29,6 +40,11 @@ export default {
     },
     async mounted() {
         this.songs = (await SongsService.index()).data
+    },
+    methods:{
+        navigateTo(route){
+            this.$router.push(route)
+        }
     }
 }
 </script>
