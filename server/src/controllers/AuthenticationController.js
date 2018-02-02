@@ -15,8 +15,9 @@ module.exports = {
             const user = await User.create(req.body);
             res.send (user.toJSON())
         } catch(err){
+                console.log(err)
                 res.status(400).send({
-                    error: "Táto emailová adresa už bola registrovaná."
+                    error: "Nastala chyba."
                 })
         }
         },
@@ -35,7 +36,7 @@ module.exports = {
                     })
                 }
 
-                const isPasswordValid = password === user.password;
+                const isPasswordValid = await user.comparePassword(password)
                 if(!isPasswordValid){
                     return res.status(403).send({
                         error: "Login nie je platny"
