@@ -34,7 +34,7 @@
     label="UTL fotky albumu"
     required
     :rules="[required]"
-    v-model="song.albumImagerUrl">
+    v-model="song.albumImageUrl">
     </v-text-field>
 
     <v-text-field
@@ -68,7 +68,7 @@
 <div class="danger-alert" v-if="error">
 {{error}}
     </div>
-    
+
 
 <v-btn
 dark
