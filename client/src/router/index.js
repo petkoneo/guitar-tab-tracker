@@ -7,7 +7,6 @@ import Songs from '@/components/Songs'
 import CreateSong from '@/components/CreateSong'
 import ViewSong from '@/components/ViewSong'
 
-
 Vue.use(Router)
 
 export default new Router({

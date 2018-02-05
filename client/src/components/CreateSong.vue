@@ -52,16 +52,12 @@
     <v-text-field
     label="Text skladby"
     multi-line
-    required
-    :rules="[required]"
     v-model="song.lyrics">
     </v-text-field>
 
     <v-text-field
     label="Tabulatura skladby"
     multi-line
-    required
-    :rules="[required]"
     v-model="song.tab">
     </v-text-field>
 </panel>
