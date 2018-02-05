@@ -32,5 +32,19 @@ module.exports = {
                 error: 'Nastal problem pri vytvoreni skladby.'
             })
         }
+    },
+    async put (req, res){
+        try {
+            const song =  await Song.update(req.body,{
+            where: {
+                id: req.params.songId
+            }
+        })
+            res.send(req.body)
+        } catch(err){
+            res.status(500).send({
+                error: 'Nastal problem pri upraveni skladby.'
+            })
+        }
     }
 }

@@ -14,6 +14,18 @@
                   <div class="song-genre">
                   Zaner: {{song.genre}}
                   </div>
+                  <v-btn
+                      dar
+                      class="cyan"
+                      @click="navigateTo({
+                      name: 'song-edit',
+                      params: {
+                          songId: song.id
+                      }
+                      })">
+                      Upravit
+                  </v-btn>
+                
                 </v-flex>
                 <v-flex xs6>
                     <p> Meno albumu: {{song.album}}</p>
@@ -23,11 +35,21 @@
               </v-layout>
                 </panel>
         </v-flex>
+                <v-flex xs6 class='ml-4'>
+        <panel title="Youtube">
+        <youtube 
+        :video-id="song.youtubeId"
+        :player-width ='500'
+        :player-height='400'>
+        </youtube>
+        </panel>
+        </v-flex>
+
 
     </v-layout>
     <v-layout>
         <v-flex xs6>
-        <panel title="Youtube">
+        <panel title="Text skladby">
                 <textarea
                 readonly
                 label="Text skladby"
@@ -67,6 +89,11 @@ export default {
     },
     components:{
         Panel
+    },
+    methods:{
+        navigateTo(route){
+            this.$router.push(route)
+        }
     }
 }
 </script>
