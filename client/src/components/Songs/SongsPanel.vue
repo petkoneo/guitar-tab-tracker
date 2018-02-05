@@ -1,6 +1,4 @@
 <template>
-  <v-layout column>
-    <v-flex xs6 offset-xs3>
         <panel title="Songs">
 
             <v-btn class="cyan accent-3"
@@ -15,7 +13,7 @@
 
             <div class="song"
               v-for="song in songs"
-            :key="songs.id">
+              :key="songs.id">
               <v-layout>
                 <v-flex xs6>
               <div class="song-title">
@@ -44,23 +42,24 @@
               </v-layout>
             </div>
         </panel>
-    </v-flex>
-  </v-layout>
-
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 import SongsService from '@/services/SongsService'
 
 export default {
-    components: {
-        Panel
-    },
     data(){
         return {
             songs: null
         }
+    },
+    watch: {
+      '$route.query.search':{
+        immediate: true,
+        async handler (value) {
+          this.songs = (await SongsService.index(value)).data
+        }
+      }
     },
     async mounted() {
         this.songs = (await SongsService.index()).data
