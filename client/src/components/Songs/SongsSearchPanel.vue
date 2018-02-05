@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
     data () {
         return {
@@ -16,7 +18,7 @@ export default {
         }
     },
     watch: {
-        search(value) {
+        search: _.debounce(async function (value) {
             const route = {
                 name: 'songs'
             }
@@ -26,7 +28,7 @@ export default {
                 }
             }
             this.$router.push(route)
-        },
+        }, 1000),
         '$route.query.search': {
             immediate: true,
             handler(value) {

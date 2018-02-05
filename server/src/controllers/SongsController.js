@@ -10,8 +10,8 @@ module.exports = {
                     where: {
                         $or: [
                             'title', 'artist', 'genre','album'
-                        ].map(key => ({
-                            [key]: search
+                        ].map(key => ({                          
+                            [key]: {$like: `%${search}%`}
                         }))
                     }
                 })
